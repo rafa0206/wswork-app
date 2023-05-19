@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:wswork_app/models/user_model.dart';
 import 'package:wswork_app/ui/pages/home_page.dart';
+import 'package:wswork_app/ui/pages/login_page.dart';
 import 'package:wswork_app/ui/validators/login_validator.dart';
 import 'package:wswork_app/ui/widgets/carsapp_theme_data.dart';
 import 'package:wswork_app/ui/widgets/custom_button.dart';
@@ -112,15 +114,15 @@ class _RegisterPageState extends State<RegisterPage> with LoginValidator {
                       },
                       child: obscureText
                           ? const Icon(
-                              (Icons.visibility_off_sharp),
-                              // color: Color(0xff58355E),
-                              color: CarsAppTheme.mainBlue,
-                            )
+                        (Icons.visibility_off_sharp),
+                        // color: Color(0xff58355E),
+                        color: CarsAppTheme.mainBlue,
+                      )
                           : const Icon(
-                              (Icons.visibility),
-                              // color: Color(0xff58355E),
-                              color: CarsAppTheme.mainBlue,
-                            ),
+                        (Icons.visibility),
+                        // color: Color(0xff58355E),
+                        color: CarsAppTheme.mainBlue,
+                      ),
                     ),
                     validator: validatePassword),
                 const SizedBox(
@@ -161,5 +163,35 @@ class _RegisterPageState extends State<RegisterPage> with LoginValidator {
         ),
       ),
     );
+  }
+
+  void _registerOnPressed(BuildContext context) {
+    FocusScope.of(context).unfocus();
+    if (_formKey.currentState != null) {
+      if (!_formKey.currentState!.validate()) {
+        return;
+      }
+      print('email ${_emailController.text}');
+      print('senha ${_passwordController.text}');
+      UserModel.of(context).registerUser(
+          _nameController.text, _emailController.text, _passwordController.text,
+          _phoneController.text, onSucess: (){
+        Message.onSuccess(
+            scaffoldKey: _scaffoldKey,
+            message: 'Usuário cadastrado com sucesso',
+            seconds: 2,
+            onPop: (value) {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (BuildContext context) => const LoginPage()));
+            });
+        return;
+      }, onFail: (String message) {
+        Message.onFail(
+          scaffoldKey: _scaffoldKey,
+          message: message, seconds: 2,
+        );
+        return;
+      });
+    }
   }
 }

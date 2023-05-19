@@ -1,7 +1,7 @@
 import 'package:wswork_app/entities/lead.dart';
 
 class User {
-  int id;
+  int? id;
   String name;
   String email;
   String password;
@@ -9,7 +9,7 @@ class User {
   Lead? lead;
 
   User({
-    required this.id,
+    /*required*/ this.id,
     required this.name,
     required this.email,
     required this.password,

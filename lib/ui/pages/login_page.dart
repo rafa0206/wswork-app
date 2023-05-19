@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wswork_app/models/user_model.dart';
 import 'package:wswork_app/ui/pages/home_page.dart';
 import 'package:wswork_app/ui/validators/login_validator.dart';
 import 'package:wswork_app/ui/widgets/carsapp_theme_data.dart';
@@ -14,14 +15,14 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> with LoginValidator{
-
+class _LoginPageState extends State<LoginPage> with LoginValidator {
   var obscureText = true;
 
   final FocusNode _focusPassword = FocusNode();
-  final _loginController = TextEditingController();
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
   // final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _scaffoldKey = GlobalKey<ScaffoldMessengerState>();
 
@@ -66,7 +67,7 @@ class _LoginPageState extends State<LoginPage> with LoginValidator{
                 ),
                 DefaultForm(
                     requestFocus: _focusPassword,
-                    controller: _loginController,
+                    controller: _emailController,
                     keyboardType: TextInputType.text,
                     labelText: 'Email',
                     hintText: 'example@email.com',
@@ -94,15 +95,15 @@ class _LoginPageState extends State<LoginPage> with LoginValidator{
                       },
                       child: obscureText
                           ? const Icon(
-                        (Icons.visibility_off_sharp),
-                        // color: Color(0xff58355E),
-                        color: CarsAppTheme.mainBlue,
-                      )
+                              (Icons.visibility_off_sharp),
+                              // color: Color(0xff58355E),
+                              color: CarsAppTheme.mainBlue,
+                            )
                           : const Icon(
-                        (Icons.visibility),
-                        // color: Color(0xff58355E),
-                        color: CarsAppTheme.mainBlue,
-                      ),
+                              (Icons.visibility),
+                              // color: Color(0xff58355E),
+                              color: CarsAppTheme.mainBlue,
+                            ),
                     ),
                     validator: validatePassword),
                 const SizedBox(
@@ -133,28 +134,29 @@ class _LoginPageState extends State<LoginPage> with LoginValidator{
 
   void _loginOnPressed(BuildContext context) {
     FocusScope.of(context).unfocus();
-    if(_formKey.currentState != null){
+    if (_formKey.currentState != null) {
       if (!_formKey.currentState!.validate()) {
         return;
       }
-      /*UserModel.of(context).login(_loginController.text, _passwordController.text,
-          onSucess: () {
-            Message.onSuccess(
-                scaffoldKey: _scaffoldKey,
-                message: 'Usuário logado com sucesso',
-                seconds: 2,
-                onPop: (value) {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (BuildContext context) => const HomePage()));
-                });
-            return;
-          }, onFail: (String message) {
-            Message.onFail(
-              scaffoldKey: _scaffoldKey,
-              message: message, seconds: 2,
-            );
-            return;
-          });*/
+      UserModel.of(context)
+          .login(_emailController.text, _passwordController.text, onSucess: () {
+        Message.onSuccess(
+            scaffoldKey: _scaffoldKey,
+            message: 'Usuário logado com sucesso',
+            seconds: 2,
+            onPop: (value) {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (BuildContext context) => const HomePage()));
+            });
+        return;
+      }, onFail: (String message) {
+        Message.onFail(
+          scaffoldKey: _scaffoldKey,
+          message: message,
+          seconds: 2,
+        );
+        return;
+      });
     }
   }
 }
