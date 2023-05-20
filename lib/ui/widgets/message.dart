@@ -47,4 +47,33 @@ class Message extends StatelessWidget {
     Future.delayed(Duration(seconds: seconds ?? 3))
         .then(onPop as FutureOr Function(dynamic value));
   }
+
+  static Widget loading(BuildContext context,
+      {double? width, double? height, double? strokeWidth, Color? color}) {
+    return Center(
+      child: SizedBox(
+        width: width ?? 40,
+        height: height ?? 40,
+        child: CircularProgressIndicator(
+          valueColor: const AlwaysStoppedAnimation<Color>(CarsAppTheme.mainBlue),
+          strokeWidth: strokeWidth ?? 5,
+        ),
+      ),
+    );
+  }
+
+  static Widget alert(String message,
+      {double? fontSize, FontWeight? fontWeight, Color? color}) {
+    return Center(
+      child: Text(
+        'Não foi possível obter os dados do servidor',
+        style: TextStyle(
+            fontSize: fontSize ?? 15,
+            color: color ?? Colors.grey[600],
+            fontWeight: fontWeight ?? FontWeight.bold),
+      ),
+    );
+  }
+
+
 }

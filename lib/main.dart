@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:wswork_app/models/car_model.dart';
+import 'package:wswork_app/models/user_model.dart';
 import 'package:wswork_app/ui/pages/home_page.dart';
 import 'package:wswork_app/ui/pages/login_page.dart';
 import 'package:wswork_app/ui/pages/register_page.dart';
 import 'package:wswork_app/ui/pages/splash_page.dart';
 import 'package:wswork_app/ui/widgets/carsapp_theme_data.dart';
 
-void main() {
-  // runApp(const MyApp());
+/*void main() {
   runApp(const WsWorkApp());
+}*/
+
+void main() {
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => UserModel()),
+      ChangeNotifierProvider(create: (context) => CarModel())
+    ],
+      child: const WsWorkApp()));
 }
 
 class WsWorkApp extends StatelessWidget {

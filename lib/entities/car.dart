@@ -1,15 +1,28 @@
 class Car {
 
+  // int id;
+  // int brandId;
+  // String brandName;
+  // String modelName;
+  // int year;
+  // String fuel;
+  // int numDoors;
+  // double fipeValue;
+  // String color;
+  // int timestampRegister;
+  // bool? isSelected;
+
   int id;
   int brandId;
   String brandName;
   String modelName;
-  int year;
+  dynamic year;
   String fuel;
   int numDoors;
-  double fipeValue;
+  dynamic fipeValue;
   String color;
-  int timestampRegister;
+  dynamic timestampRegister;
+  bool? isSelected;
 
   Car({required this.id,
     required this.brandId,
@@ -20,7 +33,24 @@ class Car {
     required this.numDoors,
     required this.fipeValue,
     required this.color,
-    required this.timestampRegister});
+    required this.timestampRegister,
+    this.isSelected
+  });
+
+  // factory Car.fromJson(Map<String, dynamic> json){
+  //   return Car(
+  //     id: (json['id'] as num).toInt(),
+  //     brandId: (json['marca_id'] as num).toInt(),
+  //     brandName: (json['marca_nome'] as String),
+  //     modelName: (json['nome_modelo'] as String),
+  //     year: (json['ano'] as num).toInt(),
+  //     fuel: (json['combustivel'] as String),
+  //     numDoors: (json['num_portas'] as num).toInt(),
+  //     fipeValue: (json['valor_fipe'] as num).toDouble(),
+  //     color: (json['cor'] as String),
+  //     timestampRegister: (json['timestamp_cadastro'] as num).toInt(),
+  //   );
+  // }
 
   factory Car.fromJson(Map<String, dynamic> json){
     return Car(
@@ -28,12 +58,12 @@ class Car {
       brandId: (json['marca_id'] as num).toInt(),
       brandName: (json['marca_nome'] as String),
       modelName: (json['nome_modelo'] as String),
-      year: (json['ano'] as num).toInt(),
+      year: (json['ano'] as dynamic),
       fuel: (json['combustivel'] as String),
       numDoors: (json['num_portas'] as num).toInt(),
-      fipeValue: (json['valor_fipe'] as num).toDouble(),
+      fipeValue: (json['valor_fipe'] as dynamic),
       color: (json['cor'] as String),
-      timestampRegister: (json['timestamp_cadastro'] as num).toInt(),
+      timestampRegister: (json['timestamp_cadastro'] as dynamic),
     );
   }
 

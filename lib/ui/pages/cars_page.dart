@@ -40,7 +40,8 @@ class _CarsPageState extends State<CarsPage> {
         child: Column(
           children: [
             const SizedBox(
-              height: 500,
+              // height: 500,
+              height: 400,
               child: ListCarCards(),
             ),
             const Divider(

@@ -4,15 +4,16 @@ import 'package:wswork_app/entities/user.dart';
 import 'package:wswork_app/repository/local/user_repository.dart';
 
 class UserModel extends ChangeNotifier {
-   late User user;
+   // late User user;
+   User? user;
 
   static UserModel of(BuildContext context) {
-    return Provider.of<UserModel>(context);
+    return Provider.of<UserModel>(context, listen: false);
   }
 
   void login(String email, String password,
       {Function? onSucess, Function(String message)? onFail}) async {
-    user.id = await UserRepository.instance.getUserIdByEmailPassword(email, password);
+    user?.id = await UserRepository.instance.getUserIdByEmailPassword(email, password);
     await UserRepository.instance.getUserByEmailPassword(email, password).then((e){
       if(e != null){
         onSucess!();
@@ -33,8 +34,9 @@ class UserModel extends ChangeNotifier {
         password: password,
         phone: phone);
     // if(user != null){
-      await UserRepository.instance.registerUserOnDB(user);
+      await UserRepository.instance.registerUserOnDB(user!);
       onSucess!();
+    notifyListeners();
     // } else {
     //   onFail!('Erro ao efetuar cadastro para $username');
     // }
