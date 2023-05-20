@@ -5,8 +5,14 @@ import 'package:wswork_app/models/car_model.dart';
 import 'package:wswork_app/ui/widgets/car_card.dart';
 import 'package:wswork_app/ui/widgets/message.dart';
 
+//ignore: must_be_immutable
 class ListCarCards extends StatefulWidget {
-  const ListCarCards({Key? key}) : super(key: key);
+
+  // Function? registerLead;
+
+  const ListCarCards({Key? key,
+    // required this.registerLead,
+  }) : super(key: key);
 
   @override
   State<ListCarCards> createState() => _ListCarCardsState();
@@ -31,6 +37,7 @@ class _ListCarCardsState extends State<ListCarCards> {
 
   void _reload() {
     CarModel.of(context).fetchCars();
+    // widget.registerLead!();
   }
 
   @override
@@ -56,7 +63,7 @@ class _ListCarCardsState extends State<ListCarCards> {
                 return Message.alert(
                     'Não foi possível obter os dados dos estoques');
               } else if (snapshot.data!.isEmpty) {
-                return Message.alert('Nenhum estoque encontrado');
+                return Message.alert('Nenhum carro encontrado');
               } else {
                 return RefreshIndicator(
                   onRefresh: () async {

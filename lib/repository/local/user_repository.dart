@@ -14,25 +14,25 @@ class UserRepository {
   static const String passwordColumn = 'senha';
   static const String phoneColumn = 'telefone';
 
-  late Database _database;
+  Database? _database;
 
-  Future<Database> get database async {
+  Future<Database?> get database async {
     _database = await InitDB.initDatabase();
     return _database;
   }
 
   registerUserOnDB(User user) async {
     // Database db = await _getDatabase();
-    Database db = _database;
-    var result = await db.insert(tableUser, user.toJson());
+    Database? db = _database;
+    var result = await db?.insert(tableUser, user.toJson());
     print('Usuario criado: ' + result.toString());
     return result;
   }
 
   getUserByEmailPassword(String email, String password) async {
     // Database db = await _getDatabase();
-    Database db = _database;
-    List<Map> users = await db.query(tableUser,
+    Database? db = _database;
+    List<Map> users = await db!.query(tableUser,
         columns: [
           idUserColumn,
           nameColumn,
@@ -57,8 +57,8 @@ class UserRepository {
 
   getUserIdByEmailPassword(String email, String password) async {
     // Database db = await _getDatabase();
-    Database db = _database;
-    List<Map> users = await db.query(tableUser,
+    Database? db = _database;
+    List<Map> users = await db!.query(tableUser,
         columns: [
           idUserColumn,
           nameColumn,
@@ -80,8 +80,8 @@ class UserRepository {
   }
 
   getUser(int id) async {
-    Database db = _database;
-    List<Map> users = await db.query(tableUser,
+    Database? db = _database;
+    List<Map> users = await db!.query(tableUser,
         columns: [
           idUserColumn,
           nameColumn,
@@ -98,6 +98,31 @@ class UserRepository {
 
       // return User.fromJson(user);
       return User.fromJson(user as Map<String, dynamic>);
+    } else {
+      return null;
+    }
+  }
+
+  Future<String?> emailExists(String email) async {
+    Database? db = _database;
+    List<Map> users = await db!.query(tableUser,
+        columns: [
+          idUserColumn,
+          nameColumn,
+          emailColumn,
+          passwordColumn,
+          phoneColumn,
+        ],
+        where: '$emailColumn = ?',
+        whereArgs: [email]);
+    if (users.isNotEmpty) {
+      var user = users.first;
+
+      String userEmail = user['email'];
+
+      return userEmail;
+
+      // return User.fromJson(maps.first as Map<String, dynamic>);
     } else {
       return null;
     }

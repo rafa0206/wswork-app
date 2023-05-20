@@ -40,7 +40,7 @@ class LeadRepository {
     return leads;
   }
 
-  getLeadByIdUser(int idUser) async {
+  Future<List<Lead>> getLeadByIdUser(int idUser) async {
     Database db = _database;
     List<Map<String, dynamic>> maps = await db.query(tableLead,
         columns: [

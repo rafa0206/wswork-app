@@ -1,13 +1,13 @@
 class Lead {
   int userId;
-  int id;
+  int? id;
   String name;
   String date;
   String time;
 
   Lead({
     required this.userId,
-    required this.id,
+    this.id,
     required this.name,
     required this.date,
     required this.time,

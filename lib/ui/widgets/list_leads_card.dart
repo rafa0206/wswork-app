@@ -9,6 +9,20 @@ class ListLeadsCard extends StatefulWidget {
 }
 
 class _ListLeadsCardState extends State<ListLeadsCard> {
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _reload();
+    });
+  }
+
+  void _reload() {
+    // CarModel.of(context).fetchCars();
+    // widget.registerLead!();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -21,4 +35,17 @@ class _ListLeadsCardState extends State<ListLeadsCard> {
       },
     );
   }
+
+
+  /*Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: 10,
+      itemBuilder: (context, index) {
+        return const Padding(
+          padding: EdgeInsets.only(bottom: 8.0),
+          child: LeadCard(),
+        );
+      },
+    );
+  }*/
 }

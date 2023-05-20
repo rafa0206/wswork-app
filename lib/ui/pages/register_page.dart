@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:wswork_app/models/user_model.dart';
 import 'package:wswork_app/ui/pages/home_page.dart';
 import 'package:wswork_app/ui/pages/login_page.dart';
 import 'package:wswork_app/ui/validators/login_validator.dart';
+import 'package:wswork_app/ui/validators/register_user_validator.dart';
 import 'package:wswork_app/ui/widgets/carsapp_theme_data.dart';
 import 'package:wswork_app/ui/widgets/custom_button.dart';
 import 'package:wswork_app/ui/widgets/login_form.dart';
@@ -16,7 +18,8 @@ class RegisterPage extends StatefulWidget {
   State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> with LoginValidator {
+class _RegisterPageState extends State<RegisterPage>
+    with RegisterUserValidator {
   var obscureText = true;
 
   final FocusNode _focusEmail = FocusNode();
@@ -31,6 +34,11 @@ class _RegisterPageState extends State<RegisterPage> with LoginValidator {
 
   // final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _scaffoldKey = GlobalKey<ScaffoldMessengerState>();
+
+  final maskFormatter = MaskTextInputFormatter(
+      mask: '(##) #####-####',
+      filter: {'#': RegExp(r'[0-9]')},
+      type: MaskAutoCompletionType.lazy);
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +80,7 @@ class _RegisterPageState extends State<RegisterPage> with LoginValidator {
                   height: 55,
                 ),
                 DefaultForm(
+                  validator: validateName,
                   requestFocus: _focusEmail,
                   controller: _nameController,
                   keyboardType: TextInputType.text,
@@ -86,51 +95,57 @@ class _RegisterPageState extends State<RegisterPage> with LoginValidator {
                   height: 20,
                 ),
                 DefaultForm(
-                    requestFocus: _focusPassword,
-                    controller: _emailController,
-                    keyboardType: TextInputType.text,
-                    labelText: 'Email',
-                    hintText: 'example@email.com',
-                    iconForm: const Icon(
-                      (Icons.mail),
-                      color: CarsAppTheme.mainBlue,
-                    ),
-                    validator: validateEmail),
+                  validator: validateEmail,
+                  focusNode: _focusEmail,
+                  requestFocus: _focusPassword,
+                  controller: _emailController,
+                  keyboardType: TextInputType.text,
+                  labelText: 'Email',
+                  hintText: 'example@email.com',
+                  iconForm: const Icon(
+                    (Icons.mail),
+                    color: CarsAppTheme.mainBlue,
+                  ),
+                ),
                 const SizedBox(
                   height: 20,
                 ),
                 PasswordForm(
-                    focusNode: _focusPhone,
-                    controller: _passwordController,
-                    keyboardType: TextInputType.text,
-                    labelText: 'Senha',
-                    hintText: 'Letras, números e caracteres',
-                    obscureText: obscureText,
-                    suffixIcon: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          obscureText = !obscureText;
-                        });
-                      },
-                      child: obscureText
-                          ? const Icon(
-                        (Icons.visibility_off_sharp),
-                        // color: Color(0xff58355E),
-                        color: CarsAppTheme.mainBlue,
-                      )
-                          : const Icon(
-                        (Icons.visibility),
-                        // color: Color(0xff58355E),
-                        color: CarsAppTheme.mainBlue,
-                      ),
-                    ),
-                    validator: validatePassword),
+                  validator: validatePassword,
+                  focusNode: _focusPassword,
+                  requestFocus: _focusPhone,
+                  controller: _passwordController,
+                  keyboardType: TextInputType.text,
+                  labelText: 'Senha',
+                  hintText: 'Letras, números e caracteres',
+                  obscureText: obscureText,
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        obscureText = !obscureText;
+                      });
+                    },
+                    child: obscureText
+                        ? const Icon(
+                            (Icons.visibility_off_sharp),
+                            // color: Color(0xff58355E),
+                            color: CarsAppTheme.mainBlue,
+                          )
+                        : const Icon(
+                            (Icons.visibility),
+                            // color: Color(0xff58355E),
+                            color: CarsAppTheme.mainBlue,
+                          ),
+                  ),
+                ),
                 const SizedBox(
                   height: 20,
                 ),
                 DefaultForm(
-                  // requestFocus: _focusPassword,
-                  controller: _emailController,
+                  validator: validatePhone,
+                  inputFormatters: [maskFormatter],
+                  focusNode: _focusPhone,
+                  controller: _phoneController,
                   keyboardType: TextInputType.text,
                   labelText: 'Telefone',
                   hintText: '(00)00000-0000',
@@ -174,8 +189,10 @@ class _RegisterPageState extends State<RegisterPage> with LoginValidator {
       print('email ${_emailController.text}');
       print('senha ${_passwordController.text}');
       UserModel.of(context).registerUser(
-          _nameController.text, _emailController.text, _passwordController.text,
-          _phoneController.text, onSucess: (){
+          _nameController.text,
+          _emailController.text,
+          _passwordController.text,
+          _phoneController.text, onSucess: () {
         Message.onSuccess(
             scaffoldKey: _scaffoldKey,
             message: 'Usuário cadastrado com sucesso',
@@ -188,7 +205,8 @@ class _RegisterPageState extends State<RegisterPage> with LoginValidator {
       }, onFail: (String message) {
         Message.onFail(
           scaffoldKey: _scaffoldKey,
-          message: message, seconds: 2,
+          message: message,
+          seconds: 2,
         );
         return;
       });

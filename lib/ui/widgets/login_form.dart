@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:wswork_app/ui/widgets/carsapp_theme_data.dart';
 
 //ignore: must_be_immutable
@@ -11,6 +12,8 @@ class DefaultForm extends StatelessWidget {
   FocusNode? requestFocus;
   FormFieldValidator<String>? validator;
   Widget? iconForm;
+  List<TextInputFormatter>? inputFormatters;
+
 
   DefaultForm({
     super.key,
@@ -22,6 +25,7 @@ class DefaultForm extends StatelessWidget {
     this.requestFocus,
     this.iconForm,
     this.validator,
+    this.inputFormatters,
   });
 
   @override
@@ -41,6 +45,7 @@ class DefaultForm extends StatelessWidget {
         controller: controller,
         keyboardType: keyboardType,
         focusNode: focusNode,
+        inputFormatters: inputFormatters,
         onFieldSubmitted: (value) {
           if (requestFocus != null) {
             FocusScope.of(context).requestFocus(requestFocus);

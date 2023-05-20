@@ -22,7 +22,7 @@ mixin LoginValidator {
     if (value.length < 8) {
       return 'Campo deve conter, no mínimo, 8 caracteres.';
     }
-    return 'null';
+    return null;
   }
 
   // String validateLogin(String value) {

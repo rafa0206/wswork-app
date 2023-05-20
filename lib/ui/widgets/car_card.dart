@@ -116,6 +116,7 @@ class _CarCardState extends State<CarCard> {
         ),
       ),
       onTap: () {
+        CarModel.of(context).deselectCarCard();
         CarModel.of(context).selectCarCard(widget.car);
         /*setState(() {
           if(widget.isSelected == true){

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wswork_app/entities/car.dart';
 import 'package:wswork_app/ui/widgets/list_car_cards.dart';
 import 'package:wswork_app/ui/widgets/carsapp_theme_data.dart';
 import 'package:wswork_app/ui/widgets/custom_button.dart';
@@ -39,10 +40,12 @@ class _CarsPageState extends State<CarsPage> {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
         child: Column(
           children: [
-            const SizedBox(
+             SizedBox(
               // height: 500,
               height: 400,
-              child: ListCarCards(),
+              child: ListCarCards(
+                // registerLead: registerLeadOnPressed,
+              ),
             ),
             const Divider(
               thickness: 1,
@@ -51,10 +54,16 @@ class _CarsPageState extends State<CarsPage> {
             const SizedBox(
               height: 20,
             ),
-            CustomButton(textButton: 'EU QUERO', onTap: (){}),
+            CustomButton(textButton: 'EU QUERO', onTap: (){
+
+            }),
           ],
         ),
       ),
     );
   }
+
+  // void registerLeadOnPressed(){
+  //   Car car = Future.value(futureCars).then((value) => value?.where((element) => element.isSelected == true)).toList();
+  // }
 }

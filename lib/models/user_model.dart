@@ -41,6 +41,10 @@ class UserModel extends ChangeNotifier {
     //   onFail!('Erro ao efetuar cadastro para $username');
     // }
   }
+
+
+
+
 }
 
 
