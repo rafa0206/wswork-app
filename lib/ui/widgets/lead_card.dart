@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:wswork_app/entities/lead.dart';
 import 'package:wswork_app/ui/widgets/carsapp_theme_data.dart';
 
+//ignore: must_be_immutable
 class LeadCard extends StatelessWidget {
-  // OperationStock operationStock;
+  Lead lead;
 
-  const LeadCard({
-    super.key,
+  LeadCard({
+    Key? key,
+    required this.lead,
     // this.operationStock,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +22,8 @@ class LeadCard extends StatelessWidget {
                 bottom: BorderSide(
           color: CarsAppTheme.mainGrey,
         ))),
-        child: const Padding(
-          padding: EdgeInsets.only(left: 28, right: 16, bottom: 22),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 28, right: 16, bottom: 22),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -29,17 +32,17 @@ class LeadCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'NOME DO CARRO',
-                      // '${operationStock.name}',
-                      style: TextStyle(
+                      // 'NOME DO CARRO',
+                      lead.name,
+                      style: const TextStyle(
                           // color: Color(0xff555353),
                           color: CarsAppTheme.mainDarkGrey,
                           fontFamily: 'SF-Mono',
                           fontSize: 15,
                           fontWeight: FontWeight.w700),
                     ),
-                    SizedBox(height: 4),
-                    Text(
+                    const SizedBox(height: 4),
+                    const Text(
                       'COMPRA',
                       style: TextStyle(
                           color: Color(0xff949191),
@@ -53,20 +56,20 @@ class LeadCard extends StatelessWidget {
               Column(
                 children: [
                   Text(
-                    // '${operationStock.date}',
-                    '18/05/2023',
-                    style: TextStyle(
+                    lead.date,
+                    // '18/05/2023',
+                    style: const TextStyle(
                         // color: Color(0xff58355E),
                         color: CarsAppTheme.mainBlue,
                         fontFamily: 'SF-Mono',
                         fontSize: 15,
                         fontWeight: FontWeight.w700),
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   Text(
-                    // '${operationStock.time}',
-                    '17:25',
-                    style: TextStyle(
+                    lead.time,
+                    // '17:25',
+                    style: const TextStyle(
                       color: Colors.black,
                       fontFamily: 'SF-Mono',
                       fontSize: 12,

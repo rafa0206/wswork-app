@@ -15,14 +15,14 @@ class InitDB {
             '${UserRepository.nameColumn} TEXT, '
             '${UserRepository.emailColumn} TEXT, '
             '${UserRepository.passwordColumn} TEXT, '
-            '${UserRepository.phoneColumn} TEXT),';
+            '${UserRepository.phoneColumn} TEXT)';
             // 'compra TEXT)';
         const String sqlLead = 'CREATE TABLE IF NOT EXISTS ${LeadRepository.tableLead}('
             '${LeadRepository.idUserColumn} INTEGER, '
             '${LeadRepository.idLeadColumn} INTEGER PRIMARY KEY AUTOINCREMENT, '
             '${LeadRepository.nameLeadColumn} TEXT, '
             '${LeadRepository.dateLeadColumn} TEXT, '
-            '${LeadRepository.timeLeadColumn} TEXT),';
+            '${LeadRepository.timeLeadColumn} TEXT)';
         await db.execute(sqlUser);
         await db.execute(sqlLead);
       }

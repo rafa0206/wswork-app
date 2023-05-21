@@ -16,7 +16,8 @@ class Message extends StatelessWidget {
       required String message,
       required int seconds,
       required Function onPop}) {
-    scaffoldKey.currentState!.showSnackBar(
+    scaffoldKey.currentState?.showSnackBar(
+    // scaffoldKey.currentState!.showSnackBar(
       SnackBar(
         content: Text(message, style: const TextStyle(color: Colors.white)),
         // backgroundColor: const Color(0xff58355E),
@@ -35,7 +36,8 @@ class Message extends StatelessWidget {
       required String message,
       required int seconds,
       Function? onPop}) {
-    scaffoldKey.currentState!.showSnackBar(
+    // scaffoldKey.currentState!.showSnackBar(
+    scaffoldKey.currentState?.showSnackBar(
       SnackBar(
         content: Text(message, style: const TextStyle(color: Colors.white)),
         // backgroundColor: const Color(0xff58355E),
@@ -44,8 +46,10 @@ class Message extends StatelessWidget {
       ),
     );
 
+
     Future.delayed(Duration(seconds: seconds ?? 3))
         .then(onPop as FutureOr Function(dynamic value));
+        // .then(onPop);
   }
 
   static Widget loading(BuildContext context,

@@ -37,7 +37,6 @@ class _ListCarCardsState extends State<ListCarCards> {
 
   void _reload() {
     CarModel.of(context).fetchCars();
-    // widget.registerLead!();
   }
 
   @override
@@ -74,9 +73,17 @@ class _ListCarCardsState extends State<ListCarCards> {
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 8.0),
-                          child: CarCard(
+                          /*child: CarCard(
                             car: snapshot.data![index],
-                          ),
+                          ),*/
+                          /*child: InkWell(*/
+                            child: CarCard(
+                              car: snapshot.data![index],
+                            ),
+                            /*onTap: (){
+                              print('touch');
+                            },
+                          ),*/
                         );
                       }),
                 );

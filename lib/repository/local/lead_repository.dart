@@ -24,14 +24,14 @@ class LeadRepository {
 
   registerLead(Lead lead) async {
     // Database db = await _getDatabase();
-    Database db = _database;
+    Database db = await database;
     var result = await db.insert(tableLead, lead.toJson());
     print('Compra registrada: ' + result.toString());
     return result;
   }
 
   Future<List<Lead>> listAll() async {
-    Database db = _database;
+    Database db = await database;
     List<Map<String, dynamic>> maps =
     await db.rawQuery('SELECT * FROM $tableLead');
     List<Lead>? leads = maps.map((e) {
@@ -41,7 +41,7 @@ class LeadRepository {
   }
 
   Future<List<Lead>> getLeadByIdUser(int idUser) async {
-    Database db = _database;
+    Database db = await database;
     List<Map<String, dynamic>> maps = await db.query(tableLead,
         columns: [
           idUserColumn,

@@ -160,7 +160,7 @@ class _RegisterPageState extends State<RegisterPage>
                 CustomButton(
                   textButton: 'CADASTRAR',
                   onTap: () {
-                    // _loginOnPressed(context);
+                    _registerOnPressed(context);
                   },
                 ),
                 const SizedBox(
@@ -169,7 +169,8 @@ class _RegisterPageState extends State<RegisterPage>
                 CustomButton(
                   textButton: 'LOGIN',
                   onTap: () {
-                    // _loginOnPressed(context);
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (BuildContext context) => const LoginPage()));
                   },
                 ),
               ],

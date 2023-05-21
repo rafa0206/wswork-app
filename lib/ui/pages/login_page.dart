@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wswork_app/models/user_model.dart';
 import 'package:wswork_app/ui/pages/home_page.dart';
+import 'package:wswork_app/ui/pages/register_page.dart';
 import 'package:wswork_app/ui/validators/login_validator.dart';
 import 'package:wswork_app/ui/widgets/carsapp_theme_data.dart';
 import 'package:wswork_app/ui/widgets/custom_button.dart';
@@ -112,7 +113,7 @@ class _LoginPageState extends State<LoginPage> with LoginValidator {
                 CustomButton(
                   textButton: 'LOGIN',
                   onTap: () {
-                    // _loginOnPressed(context);
+                    _loginOnPressed(context);
                   },
                 ),
                 const SizedBox(
@@ -121,7 +122,8 @@ class _LoginPageState extends State<LoginPage> with LoginValidator {
                 CustomButton(
                   textButton: 'CADASTRAR',
                   onTap: () {
-                    // _loginOnPressed(context);
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (BuildContext context) => const RegisterPage()));
                   },
                 ),
               ],

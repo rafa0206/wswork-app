@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wswork_app/models/car_model.dart';
+import 'package:wswork_app/models/lead_model.dart';
 import 'package:wswork_app/models/user_model.dart';
 import 'package:wswork_app/ui/pages/home_page.dart';
 import 'package:wswork_app/ui/pages/login_page.dart';
@@ -16,7 +17,8 @@ void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => UserModel()),
-      ChangeNotifierProvider(create: (context) => CarModel())
+      ChangeNotifierProvider(create: (context) => CarModel()),
+      ChangeNotifierProvider(create: (context) => LeadModel())
     ],
       child: const WsWorkApp()));
 }
@@ -36,9 +38,9 @@ class WsWorkApp extends StatelessWidget {
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
       // home: const SplashScreen(),
-      // home: const LoginPage(),
+      home: const LoginPage(),
       // home: const RegisterPage(),
-      home: const HomePage(),
+      // home: const HomePage(),
       debugShowCheckedModeBanner: false,
     );
   }

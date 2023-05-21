@@ -43,9 +43,29 @@ class CarModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  /*void selectCarCard(int index) {
+    int indexList;
+
+    Future.value(futureCars).then((value) => value?.forEach((element) {
+      element.isSelected = false;
+    }));
+
+    // Future.value(futureCars).then((value) => value?.indexWhere((element == index) => false));
+    // if (car.isSelected == true) {
+    //   car.isSelected = false;
+    // } else {
+    //   car.isSelected = true;
+    // }
+    notifyListeners();
+  }*/
+
   void selectCarCard(Car car) {
+    Future.value(futureCars).then((value) => value?.forEach((element) {
+      if(element != car){
+        element.isSelected = false;
+      }
+    }));
     if (car.isSelected == true) {
-      // value = false;
       car.isSelected = false;
     } else {
       car.isSelected = true;

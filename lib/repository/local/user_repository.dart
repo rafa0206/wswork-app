@@ -23,7 +23,7 @@ class UserRepository {
 
   registerUserOnDB(User user) async {
     // Database db = await _getDatabase();
-    Database? db = _database;
+    Database? db = await database;
     var result = await db?.insert(tableUser, user.toJson());
     print('Usuario criado: ' + result.toString());
     return result;
@@ -31,7 +31,7 @@ class UserRepository {
 
   getUserByEmailPassword(String email, String password) async {
     // Database db = await _getDatabase();
-    Database? db = _database;
+    Database? db =  await database;
     List<Map> users = await db!.query(tableUser,
         columns: [
           idUserColumn,
@@ -57,7 +57,7 @@ class UserRepository {
 
   getUserIdByEmailPassword(String email, String password) async {
     // Database db = await _getDatabase();
-    Database? db = _database;
+    Database? db = await database;
     List<Map> users = await db!.query(tableUser,
         columns: [
           idUserColumn,
@@ -80,7 +80,7 @@ class UserRepository {
   }
 
   getUser(int id) async {
-    Database? db = _database;
+    Database? db = await database;
     List<Map> users = await db!.query(tableUser,
         columns: [
           idUserColumn,
@@ -104,7 +104,7 @@ class UserRepository {
   }
 
   Future<String?> emailExists(String email) async {
-    Database? db = _database;
+    Database? db = await database;
     List<Map> users = await db!.query(tableUser,
         columns: [
           idUserColumn,

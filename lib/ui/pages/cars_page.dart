@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wswork_app/entities/car.dart';
+import 'package:wswork_app/models/car_model.dart';
+import 'package:wswork_app/models/user_model.dart';
 import 'package:wswork_app/ui/widgets/list_car_cards.dart';
 import 'package:wswork_app/ui/widgets/carsapp_theme_data.dart';
 import 'package:wswork_app/ui/widgets/custom_button.dart';
@@ -40,7 +42,7 @@ class _CarsPageState extends State<CarsPage> {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
         child: Column(
           children: [
-             SizedBox(
+             const SizedBox(
               // height: 500,
               height: 400,
               child: ListCarCards(
@@ -55,7 +57,10 @@ class _CarsPageState extends State<CarsPage> {
               height: 20,
             ),
             CustomButton(textButton: 'EU QUERO', onTap: (){
-
+              CarModel.of(context).doLead(
+                  UserModel.of(context).user!.email,
+                  UserModel.of(context).user!.password
+              );
             }),
           ],
         ),
