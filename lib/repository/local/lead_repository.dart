@@ -3,7 +3,6 @@ import 'package:wswork_app/entities/lead.dart';
 import 'package:wswork_app/repository/local/database/init_db.dart';
 
 class LeadRepository {
-
   static final LeadRepository instance = LeadRepository._();
 
   LeadRepository._();
@@ -23,7 +22,6 @@ class LeadRepository {
   }
 
   registerLead(Lead lead) async {
-    // Database db = await _getDatabase();
     Database db = await database;
     var result = await db.insert(tableLead, lead.toJson());
     print('Compra registrada: ' + result.toString());
@@ -33,7 +31,7 @@ class LeadRepository {
   Future<List<Lead>> listAll() async {
     Database db = await database;
     List<Map<String, dynamic>> maps =
-    await db.rawQuery('SELECT * FROM $tableLead');
+        await db.rawQuery('SELECT * FROM $tableLead');
     List<Lead>? leads = maps.map((e) {
       return Lead.fromJson(e);
     }).toList();
@@ -53,5 +51,4 @@ class LeadRepository {
     }).toList();
     return leads;
   }
-
 }

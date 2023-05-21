@@ -14,7 +14,6 @@ class DefaultForm extends StatelessWidget {
   Widget? iconForm;
   List<TextInputFormatter>? inputFormatters;
 
-
   DefaultForm({
     super.key,
     required this.controller,
@@ -35,12 +34,10 @@ class DefaultForm extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         border: Border.all(
           width: 1,
-          // color: Color(0xff58355E),
           color: CarsAppTheme.mainBlue,
         ),
       ),
       child: TextFormField(
-        // cursorColor: Color(0xff58355E),
         validator: validator,
         controller: controller,
         keyboardType: keyboardType,
@@ -54,11 +51,6 @@ class DefaultForm extends StatelessWidget {
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.all(8),
           prefixIcon: iconForm,
-          /*prefixIcon: const Icon(
-            // (Icons.person),
-            (Icons.mail),
-            color: CarsAppTheme.mainBlue,
-          ),*/
           labelText: labelText,
           labelStyle: const TextStyle(
             color: CarsAppTheme.mainBlue,

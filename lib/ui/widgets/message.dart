@@ -16,40 +16,31 @@ class Message extends StatelessWidget {
       required String message,
       required int seconds,
       required Function onPop}) {
-    scaffoldKey.currentState?.showSnackBar(
-    // scaffoldKey.currentState!.showSnackBar(
+    ScaffoldMessenger.of(scaffoldKey.currentContext!).showSnackBar(
       SnackBar(
         content: Text(message, style: const TextStyle(color: Colors.white)),
-        // backgroundColor: const Color(0xff58355E),
-        backgroundColor: CarsAppTheme.mainBlue,
-        duration: Duration(seconds: seconds ?? 2),
-      ),
-    );
-
-    Future.delayed(Duration(seconds: seconds ?? 2))
-        .then(onPop as FutureOr Function(dynamic value));
-  }
-
-  // static void onFail({required GlobalKey<ScaffoldState> scaffoldKey,
-  static void onFail(
-      {required GlobalKey<ScaffoldMessengerState> scaffoldKey,
-      required String message,
-      required int seconds,
-      Function? onPop}) {
-    // scaffoldKey.currentState!.showSnackBar(
-    scaffoldKey.currentState?.showSnackBar(
-      SnackBar(
-        content: Text(message, style: const TextStyle(color: Colors.white)),
-        // backgroundColor: const Color(0xff58355E),
         backgroundColor: CarsAppTheme.mainBlue,
         duration: Duration(seconds: seconds ?? 3),
       ),
     );
 
+    Future.delayed(Duration(seconds: seconds ?? 3), () {
+      onPop();
+    });
+  }
 
-    Future.delayed(Duration(seconds: seconds ?? 3))
-        .then(onPop as FutureOr Function(dynamic value));
-        // .then(onPop);
+  static void onFail(
+      {required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+      required String message,
+      required int seconds,
+      Function? onPop}) {
+    ScaffoldMessenger.of(scaffoldKey.currentContext!).showSnackBar(
+      SnackBar(
+        content: Text(message, style: const TextStyle(color: Colors.white)),
+        backgroundColor: CarsAppTheme.mainBlue,
+        duration: Duration(seconds: seconds ?? 3),
+      ),
+    );
   }
 
   static Widget loading(BuildContext context,
@@ -59,7 +50,8 @@ class Message extends StatelessWidget {
         width: width ?? 40,
         height: height ?? 40,
         child: CircularProgressIndicator(
-          valueColor: const AlwaysStoppedAnimation<Color>(CarsAppTheme.mainBlue),
+          valueColor:
+              const AlwaysStoppedAnimation<Color>(CarsAppTheme.mainBlue),
           strokeWidth: strokeWidth ?? 5,
         ),
       ),
@@ -79,5 +71,17 @@ class Message extends StatelessWidget {
     );
   }
 
-
+  static void onCheckEmail(
+      {required GlobalKey<ScaffoldMessengerState> scaffoldKey,
+      required String message,
+      required int seconds,
+      Function? onPop}) {
+    ScaffoldMessenger.of(scaffoldKey.currentContext!).showSnackBar(
+      SnackBar(
+        content: Text(message, style: const TextStyle(color: Colors.white)),
+        backgroundColor: CarsAppTheme.mainBlue,
+        duration: Duration(seconds: seconds ?? 3),
+      ),
+    );
+  }
 }

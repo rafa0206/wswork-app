@@ -24,7 +24,6 @@ class _LoginPageState extends State<LoginPage> with LoginValidator {
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  // final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _scaffoldKey = GlobalKey<ScaffoldMessengerState>();
 
   @override
@@ -73,7 +72,6 @@ class _LoginPageState extends State<LoginPage> with LoginValidator {
                     labelText: 'Email',
                     hintText: 'example@email.com',
                     iconForm: const Icon(
-                      // (Icons.person),
                       (Icons.mail),
                       color: CarsAppTheme.mainBlue,
                     ),
@@ -97,12 +95,10 @@ class _LoginPageState extends State<LoginPage> with LoginValidator {
                       child: obscureText
                           ? const Icon(
                               (Icons.visibility_off_sharp),
-                              // color: Color(0xff58355E),
                               color: CarsAppTheme.mainBlue,
                             )
                           : const Icon(
                               (Icons.visibility),
-                              // color: Color(0xff58355E),
                               color: CarsAppTheme.mainBlue,
                             ),
                     ),
@@ -123,7 +119,8 @@ class _LoginPageState extends State<LoginPage> with LoginValidator {
                   textButton: 'CADASTRAR',
                   onTap: () {
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (BuildContext context) => const RegisterPage()));
+                        builder: (BuildContext context) =>
+                            const RegisterPage()));
                   },
                 ),
               ],
@@ -146,7 +143,7 @@ class _LoginPageState extends State<LoginPage> with LoginValidator {
             scaffoldKey: _scaffoldKey,
             message: 'Usuário logado com sucesso',
             seconds: 2,
-            onPop: (value) {
+            onPop: () {
               Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (BuildContext context) => const HomePage()));
             });

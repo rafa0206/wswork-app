@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wswork_app/entities/car.dart';
 import 'package:wswork_app/models/car_model.dart';
 import 'package:wswork_app/ui/widgets/car_card.dart';
 import 'package:wswork_app/ui/widgets/message.dart';
 
 //ignore: must_be_immutable
 class ListCarCards extends StatefulWidget {
-
-  // Function? registerLead;
-
-  const ListCarCards({Key? key,
-    // required this.registerLead,
+  const ListCarCards({
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -19,14 +15,6 @@ class ListCarCards extends StatefulWidget {
 }
 
 class _ListCarCardsState extends State<ListCarCards> {
-  // late bool value = false;
-  // late Future<List<Car>> futureCars;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _reload();
-  // }
   @override
   void initState() {
     super.initState();
@@ -73,17 +61,9 @@ class _ListCarCardsState extends State<ListCarCards> {
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 8.0),
-                          /*child: CarCard(
+                          child: CarCard(
                             car: snapshot.data![index],
-                          ),*/
-                          /*child: InkWell(*/
-                            child: CarCard(
-                              car: snapshot.data![index],
-                            ),
-                            /*onTap: (){
-                              print('touch');
-                            },
-                          ),*/
+                          ),
                         );
                       }),
                 );
@@ -94,28 +74,3 @@ class _ListCarCardsState extends State<ListCarCards> {
     });
   }
 }
-
-
-
-// @override
-//   Widget build(BuildContext context) {
-//     return ListView.builder(
-//       itemCount: 10,
-//       itemBuilder: (context, index) {
-//         return Padding(
-//           padding: const EdgeInsets.only(bottom: 8.0),
-//           // child: InkWell(
-//             child: CarCard(
-//               isSelected: null,
-//             ),
-//           //   onTap: () {
-//           //     setState(() {
-//           //       value = true;
-//           //     });
-//           //     print('touch');
-//           //   },
-//           // ),
-//         );
-//       },
-//     );
-//   }

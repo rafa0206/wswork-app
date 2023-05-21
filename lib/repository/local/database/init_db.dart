@@ -5,6 +5,7 @@ import 'package:wswork_app/repository/local/user_repository.dart';
 class InitDB {
 
   static Future<Database> initDatabase() async {
+    print('init DB');
     final pathDB = await getDatabasesPath();
     final localDB = '${pathDB}local.db';
 
@@ -16,7 +17,6 @@ class InitDB {
             '${UserRepository.emailColumn} TEXT, '
             '${UserRepository.passwordColumn} TEXT, '
             '${UserRepository.phoneColumn} TEXT)';
-            // 'compra TEXT)';
         const String sqlLead = 'CREATE TABLE IF NOT EXISTS ${LeadRepository.tableLead}('
             '${LeadRepository.idUserColumn} INTEGER, '
             '${LeadRepository.idLeadColumn} INTEGER PRIMARY KEY AUTOINCREMENT, '

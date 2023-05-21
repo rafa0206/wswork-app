@@ -6,14 +6,10 @@ import 'package:wswork_app/ui/widgets/carsapp_theme_data.dart';
 //ignore: must_be_immutable
 class CarCard extends StatefulWidget {
   Car car;
-  // bool? isSelected;
-  // Widget iconCar;
 
   CarCard({
     Key? key,
     required this.car,
-    // this.isSelected,
-    // required this.iconCar,
   }) : super(key: key);
 
   @override
@@ -21,16 +17,9 @@ class CarCard extends StatefulWidget {
 }
 
 class _CarCardState extends State<CarCard> {
-
-  // late bool value;
-
-
   @override
   void initState() {
     super.initState();
-    // value = false;
-    // widget.isSelected = false;
-    // widget.isSelected = value;
   }
 
   @override
@@ -47,24 +36,12 @@ class _CarCardState extends State<CarCard> {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Icon(
-                  //   (Icons.directions_car_filled_rounded),
-                  //   color: CarsAppTheme.mainBlue,
-                  //   size: 50,
-                  // ),
-                  // SizedBox(
-                  //   width: 10,
-                  // ),
-                   Column(
-                    // mainAxisAlignment: MainAxisAlignment.center,
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        // 'NOME do carro',
                         '${widget.car.brandName} ${widget.car.modelName} ${widget.car.year}',
-                        // '${widget.car.brandName}',
                         style: const TextStyle(
                             color: Colors.black,
                             fontFamily: 'SF-Mono',
@@ -83,7 +60,6 @@ class _CarCardState extends State<CarCard> {
                           color: CarsAppTheme.mainDarkGrey,
                           fontFamily: 'SF-Mono',
                           fontSize: 15,
-                          // fontWeight: FontWeight.w700
                         ),
                       ),
                     ],
@@ -99,16 +75,6 @@ class _CarCardState extends State<CarCard> {
                           color: CarsAppTheme.mainDarkGrey,
                           size: 50,
                         ),
-                  /*Icon(
-                    (Icons.directions_car_filled_rounded),
-                    color: CarsAppTheme.mainBlue,
-                    size: 50,
-                  ),
-                  Icon(
-                    (Icons.directions_car_filled_outlined),
-                    color: CarsAppTheme.mainBlue,
-                    size: 50,
-                  ),*/
                 ],
               ),
             ],

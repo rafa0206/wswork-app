@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:wswork_app/models/user_model.dart';
-import 'package:wswork_app/ui/pages/home_page.dart';
 import 'package:wswork_app/ui/pages/login_page.dart';
-import 'package:wswork_app/ui/validators/login_validator.dart';
 import 'package:wswork_app/ui/validators/register_user_validator.dart';
 import 'package:wswork_app/ui/widgets/carsapp_theme_data.dart';
 import 'package:wswork_app/ui/widgets/custom_button.dart';
@@ -32,7 +30,6 @@ class _RegisterPageState extends State<RegisterPage>
   final _phoneController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  // final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _scaffoldKey = GlobalKey<ScaffoldMessengerState>();
 
   final maskFormatter = MaskTextInputFormatter(
@@ -89,7 +86,7 @@ class _RegisterPageState extends State<RegisterPage>
                   iconForm: const Icon(
                     (Icons.person),
                     color: CarsAppTheme.mainBlue,
-                  ), /*validator: validateEmail*/
+                  ),
                 ),
                 const SizedBox(
                   height: 20,
@@ -128,12 +125,10 @@ class _RegisterPageState extends State<RegisterPage>
                     child: obscureText
                         ? const Icon(
                             (Icons.visibility_off_sharp),
-                            // color: Color(0xff58355E),
                             color: CarsAppTheme.mainBlue,
                           )
                         : const Icon(
                             (Icons.visibility),
-                            // color: Color(0xff58355E),
                             color: CarsAppTheme.mainBlue,
                           ),
                   ),
@@ -152,7 +147,7 @@ class _RegisterPageState extends State<RegisterPage>
                   iconForm: const Icon(
                     (Icons.phone),
                     color: CarsAppTheme.mainBlue,
-                  ), /*validator: validateEmail*/
+                  ),
                 ),
                 const SizedBox(
                   height: 40,
@@ -198,7 +193,7 @@ class _RegisterPageState extends State<RegisterPage>
             scaffoldKey: _scaffoldKey,
             message: 'Usuário cadastrado com sucesso',
             seconds: 2,
-            onPop: (value) {
+            onPop: () {
               Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (BuildContext context) => const LoginPage()));
             });

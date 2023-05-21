@@ -4,76 +4,44 @@ import 'package:wswork_app/entities/user.dart';
 import 'package:wswork_app/repository/local/user_repository.dart';
 
 class UserModel extends ChangeNotifier {
-   // late User user;
-   User? user;
+  User? user;
 
   static UserModel of(BuildContext context) {
     return Provider.of<UserModel>(context, listen: false);
   }
 
   void login(String email, String password,
-      {Function? onSucess, Function(String message)? onFail}) async {
-    user?.id = await UserRepository.instance.getUserIdByEmailPassword(email, password);
-    await UserRepository.instance.getUserByEmailPassword(email, password).then((e){
-      if(e != null){
-        onSucess!();
-      }else {
-        onFail!('Erro ao efetuar login para $email');
+      {required Function() onSucess,
+      required Function(String message) onFail}) async {
+    await UserRepository.instance
+        .getUserByEmailPassword(email, password)
+        .then((e) async {
+      if (e != null) {
+        user = await UserRepository.instance
+            .getUserByEmailPassword(email, password);
+        notifyListeners();
+        onSucess();
+      } else {
+        onFail('email: "$email" não cadastrado');
       }
     });
     notifyListeners();
   }
 
-  void registerUser(String username, String email, String password,
-      String phone,
-      {Function? onSucess, Function(String message)? onFail}) async {
-    // User user = User(/*id: id,*/
-    user = User(/*id: id,*/
-        name: username,
-        email: email,
-        password: password,
-        phone: phone);
-    // if(user != null){
-      await UserRepository.instance.registerUserOnDB(user!);
-      onSucess!();
-    notifyListeners();
-    // } else {
-    //   onFail!('Erro ao efetuar cadastro para $username');
-    // }
-  }
-
-
-
-
-}
-
-
-
-
-
-/*void login(String username, String password) async {
-    // user = await UserApi.instance.signIn(username, password);
-
-    if (user != null) {
-      await UserRepository.instance.saveUser(user);
-      onSucess();
+  void registerUser(
+      String username, String email, String password, String phone,
+      {required Function() onSucess,
+      required Function(String message) onFail}) async {
+    String? checkEmailDB = await UserRepository.instance.emailExists(email);
+    if (checkEmailDB == email) {
+      onFail('Email já cadastrado');
     } else {
-      onFail('Erro ao efetuar login para $username');
+      user =
+          User(name: username, email: email, password: password, phone: phone);
+      notifyListeners();
+      await UserRepository.instance.registerUserOnDB(user!);
+      onSucess();
+      notifyListeners();
     }
-  }*/
-
-// void loginApp() async{
-//   await
-// }
-
-// void login(String username, String password, Function onSucess,
-//     Function(String message) onFail) async {
-//   user = await UserApi.instance.signIn(username, password);
-//
-//   if (user != null) {
-//     await UserRepository.instance.saveUser(user);
-//     onSucess();
-//   } else {
-//     onFail('Erro ao efetuar login para $username');
-//   }
-// }
+  }
+}

@@ -66,10 +66,6 @@ flutter:
     - family: SF Mono
       fonts:
         - asset: assets/fonts/SF-Mono-Medium.ttf
-#        - asset: assets/fonts/SF-Mono-Heavy.ttf
-#    - family: Montserrat
-#      fonts:
-#        - asset: assets/fonts/Montserrat-Regular.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wswork_app/entities/user.dart';
 
 import 'carsapp_theme_data.dart';
 
@@ -28,7 +27,6 @@ class ProfileContent extends StatelessWidget {
               padding: EdgeInsets.only(top: 72, bottom: 55),
               child: Icon(
                 (Icons.account_circle),
-                // color: Color(0xff949191),
                 color: CarsAppTheme.mainDarkGrey,
                 size: 75,
               ),
@@ -41,20 +39,10 @@ class ProfileContent extends StatelessWidget {
                   fontSize: 17,
                   fontWeight: FontWeight.w500),
             ),
-            /*SizedBox(height: 5),
-            Text(
-              user.email,
-              style: TextStyle(
-                  color: Color(0xff555353),
-                  fontFamily: 'Montserrat',
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700),
-            ),*/
           ],
         ),
         const SizedBox(height: 30),
         const Divider(
-          // color: Color(0xffEDEDED),
           color: CarsAppTheme.mainGrey,
           thickness: 2,
         ),

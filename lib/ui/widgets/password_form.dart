@@ -27,18 +27,15 @@ class PasswordForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TextTheme _textTheme = Theme.of(context).textTheme;
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         border: Border.all(
           width: 1,
-          // color: Color(0xff58355E),
           color: CarsAppTheme.mainBlue,
         ),
       ),
       child: TextFormField(
-        // cursorColor: Color(0xff58355E),
         validator: validator,
         controller: controller,
         obscureText: obscureText ?? true,

@@ -1,20 +1,16 @@
-import 'package:wswork_app/entities/lead.dart';
-
 class User {
   int? id;
   String name;
   String email;
   String password;
   String phone;
-  Lead? lead;
 
   User({
-    /*required*/ this.id,
+    this.id,
     required this.name,
     required this.email,
     required this.password,
     required this.phone,
-    this.lead,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -24,7 +20,6 @@ class User {
       email: (json['email'] as String),
       password: (json['senha'] as String),
       phone: (json['telefone'] as String),
-      lead: Lead.fromJson(json),
     );
   }
 
@@ -37,5 +32,4 @@ class User {
       'telefone': phone,
     };
   }
-
 }

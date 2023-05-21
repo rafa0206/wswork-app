@@ -9,7 +9,6 @@ class LeadCard extends StatelessWidget {
   LeadCard({
     Key? key,
     required this.lead,
-    // this.operationStock,
   }) : super(key: key);
 
   @override
@@ -32,10 +31,8 @@ class LeadCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      // 'NOME DO CARRO',
-                      lead.name,
+                      lead.name!,
                       style: const TextStyle(
-                          // color: Color(0xff555353),
                           color: CarsAppTheme.mainDarkGrey,
                           fontFamily: 'SF-Mono',
                           fontSize: 15,
@@ -56,10 +53,8 @@ class LeadCard extends StatelessWidget {
               Column(
                 children: [
                   Text(
-                    lead.date,
-                    // '18/05/2023',
+                    lead.date!,
                     style: const TextStyle(
-                        // color: Color(0xff58355E),
                         color: CarsAppTheme.mainBlue,
                         fontFamily: 'SF-Mono',
                         fontSize: 15,
@@ -67,8 +62,7 @@ class LeadCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    lead.time,
-                    // '17:25',
+                    lead.time!,
                     style: const TextStyle(
                       color: Colors.black,
                       fontFamily: 'SF-Mono',

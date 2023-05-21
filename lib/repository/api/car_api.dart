@@ -12,15 +12,10 @@ class CarApi {
   Future<List<Car>?> getCars() async {
     List<Car>? cars;
     try {
-      // var url = Uri.https('https://wswork.com.br/cars.json');
-      // var response = await http.get(url);
-
-      final response = await http
-          .get(Uri.parse('https://wswork.com.br/cars.json'),
+      final response = await http.get(
+        Uri.parse('https://wswork.com.br/cars.json'),
         headers: {
-          // 'Content-Type': 'application/json',
           HttpHeaders.contentTypeHeader: 'application/json',
-          // 'Authorization': authorization
         },
       );
 
