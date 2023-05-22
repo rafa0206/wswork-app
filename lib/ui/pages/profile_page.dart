@@ -26,19 +26,21 @@ class ProfilePage extends StatelessWidget {
       ),
       body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),
-          child: Column(
-            children: [
-              Consumer<UserModel>(builder:
-                  (BuildContext context, UserModel userModel, Widget? widget) {
-                return ProfileContent(
-                  userName: userModel.user!.name.toUpperCase(),
-                  userEmail: userModel.user!.email,
-                  userPhone: userModel.user!.phone,
-                );
-              }),
-              const SizedBox(height: 58),
-              ExitButton(scaffoldKey: scaffoldKey, isProfilePage: true),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Consumer<UserModel>(builder:
+                    (BuildContext context, UserModel userModel, Widget? widget) {
+                  return ProfileContent(
+                    userName: userModel.user!.name.toUpperCase(),
+                    userEmail: userModel.user!.email,
+                    userPhone: userModel.user!.phone,
+                  );
+                }),
+                const SizedBox(height: 58),
+                ExitButton(scaffoldKey: scaffoldKey, isProfilePage: true),
+              ],
+            ),
           )),
     );
   }

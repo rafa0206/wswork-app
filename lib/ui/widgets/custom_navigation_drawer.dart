@@ -93,7 +93,7 @@ class CustomNavigationDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
+            /*Padding(
               padding: const EdgeInsets.symmetric(horizontal: 7),
               child: ListTile(
                 onTap: () {
@@ -122,7 +122,7 @@ class CustomNavigationDrawer extends StatelessWidget {
                   size: 16,
                 ),
               ),
-            ),
+            ),*/
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 7),
               child: ListTile(

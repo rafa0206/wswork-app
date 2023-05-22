@@ -34,13 +34,14 @@ class _CarsPageState extends State<CarsPage> {
       ),
       drawer: CustomNavigationDrawer(scaffoldKey: _homeKey),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
         child: Column(
           children: [
-            const SizedBox(
-              height: 400,
-              child: ListCarCards(),
-            ),
+            // const SizedBox(
+            //   height: 400,
+            //   child: ListCarCards(),
+            // ),
+            const Expanded(child: ListCarCards()),
             const Divider(
               thickness: 1,
               color: CarsAppTheme.mainBlue,
@@ -51,9 +52,13 @@ class _CarsPageState extends State<CarsPage> {
             CustomButton(
                 textButton: 'EU QUERO',
                 onTap: () {
-                  CarModel.of(context).doLead(UserModel.of(context).user!.email,
+                  CarModel.of(context).doLead(
+                      UserModel.of(context).user!.email,
                       UserModel.of(context).user!.password);
                 }),
+            // const SizedBox(
+            //   height: 10,
+            // ),
           ],
         ),
       ),

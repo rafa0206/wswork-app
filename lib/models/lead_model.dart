@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wswork_app/entities/lead.dart';
+import 'package:wswork_app/repository/api/lead_api.dart';
 import 'package:wswork_app/repository/local/lead_repository.dart';
 
 class LeadModel extends ChangeNotifier {
@@ -17,4 +18,15 @@ class LeadModel extends ChangeNotifier {
     loading = false;
     notifyListeners();
   }
+
+  Future<void> addLeads(List<Lead> leads, {required Function() onPostLeads}) async {
+    // leads.forEach((element) async {
+    for (var element in leads) {
+      // var message = await LeadApi.instance.addLead(element);
+      await LeadApi.instance.addLead(element);
+    }
+    onPostLeads();
+    notifyListeners();
+  }
+
 }

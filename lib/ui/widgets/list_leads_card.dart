@@ -12,6 +12,9 @@ class ListLeadsCard extends StatefulWidget {
 }
 
 class _ListLeadsCardState extends State<ListLeadsCard> {
+
+  final _scaffoldKey = GlobalKey<ScaffoldMessengerState>();
+
   @override
   void initState() {
     super.initState();
@@ -22,6 +25,27 @@ class _ListLeadsCardState extends State<ListLeadsCard> {
 
   void _reload() {
     LeadModel.of(context).fetchLeads();
+  }
+
+  void addLeads() async {
+    var futureLeads = LeadModel.of(context).futureLeads;
+    if (futureLeads != null) {
+      var leads = await Future.value(futureLeads);
+      if (context.mounted) {
+        LeadModel.of(context).addLeads(
+          leads!,
+          onPostLeads: () {
+            Message.onSuccess(
+              scaffoldKey: _scaffoldKey,
+              message: 'Boas compras',
+              seconds: 2,
+              onPop: () {},
+            );
+            return;
+          },
+        );
+      }
+    }
   }
 
   @override
@@ -41,13 +65,11 @@ class _ListLeadsCardState extends State<ListLeadsCard> {
                 );
               default:
                 if (snapshot.hasError) {
-                  return Message.alert(
-                      'Não foi possível obter os dados do servidor');
+                  return Message.alert('Nenhuma compra encontrada');
                 } else if (!snapshot.hasData) {
-                  return Message.alert(
-                      'Não foi possível obter os dados dos estoques');
+                  return Message.alert('Nenhuma compra encontrada');
                 } else if (snapshot.data!.isEmpty) {
-                  return Message.alert('Nenhum carro encontrado');
+                  return Message.alert('Nenhuma compra encontrada');
                 } else {
                   return RefreshIndicator(
                     onRefresh: () async {

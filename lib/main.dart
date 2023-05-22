@@ -4,6 +4,7 @@ import 'package:wswork_app/models/car_model.dart';
 import 'package:wswork_app/models/lead_model.dart';
 import 'package:wswork_app/models/user_model.dart';
 import 'package:wswork_app/ui/pages/login_page.dart';
+import 'package:wswork_app/ui/pages/splash_page.dart';
 import 'package:wswork_app/ui/widgets/carsapp_theme_data.dart';
 
 void main() {
@@ -22,11 +23,12 @@ class WsWorkApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         fontFamily: 'SF-Mono',
-        primaryColor: Colors.amber,
+        // primaryColor: Colors.amber,
         appBarTheme: const AppBarTheme(color: CarsAppTheme.mainBlue),
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: const LoginPage(),
+      // home: const LoginPage(),
+      home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
